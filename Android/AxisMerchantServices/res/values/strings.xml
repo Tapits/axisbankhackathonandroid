@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AxisMerchantServices</string>
+
+    <!-- Common Strings -->
+
+    <string name="loading">Loading...</string>
+    <string name="progress_dialog_title">Please wait...</string>
+    <string name="cancel_btn">Cancel</string>
+    <string name="alert_dialog_title">Alert</string>
+    <string name="ok_btn">OK</string>
+    <string name="progress_dialog_msg">Getting data...</string>
+    <string name="server_error">Problem with server</string>
+    <string name="network_error">Server Unavailable while sending data</string>
+    <string name="server_not_reachable">Server is not reachable</string>
+    <string name="device_connectivity">Please check data network on your device. Error: Unknown Host</string>
+    <string name="parse_display_msg">Error Parsing Data</string>
+    <string name="parse_detailed_msg">Data may not be valid or server has issues</string>
+    <string name="problem_with_network">Some Problems in Network Or Web-Services,try again...</string>
+
+    <!-- HomeScreen -->
+    <string name="online_reg">Online Merchant Registration</string>
+    <string name="offline_reg">Offline Merchant Registration</string>
+    <string name="complete_form">Complete Application Form &amp; Status</string>
+    <string name="agg_area">Aggregators Area</string>
+
+    <!-- Debit Credit Screen -->
+    <string name="debit_card">Debit Card</string>
+    <string name="credit_card">Credit Card</string>
+    <string name="net_banking">Net banking</string>
+    <string name="mobile_app">Mobile Application</string>
+
+    <!-- Basic Info -->
+    <string name="legal_name">Legal Name</string>
+    <string name="marketing_name">Marketing Name</string>
+    <string name="email">Email</string>
+
+    <string-array name="cons_array">
+        <item>Select Constitution</item>
+        <item>Individual</item>
+        <item>Partnership</item>
+        <item>Trust</item>
+        <item>Private Company</item>
+        <item>Public Company</item>
+        <item>Sole</item>
+        <item>HUF</item>
+        <item>Government</item>
+        <item>Society</item>
+        <item>Association of Persons</item>
+        <item>Others</item>
+    </string-array>
+
+    <string name="constitution">Constitution</string>
+
+    <string-array name="payment_mode">
+        <item>Select Payment Mode</item>
+        <item>Current Account</item>
+        <item>Savings Account</item>
+        <item>NEFT</item>
+        <item>PO</item>
+    </string-array>
+
+    <string name="date_of_incor">Date of Incorporation (dd/MM/yyyy)</string>
+    <string name="pan_num">PAN Number</string>
+    <string name="existing_acquirer">Existing Acquirer</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="if_yes">If Yes, accepting card for </string>
+    <string name="months">Months</string>
+    <string name="install_add">Installation Address</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="pincode">Pin Code</string>
+    <string name="shop_photo">Shop Photo Upload</string>
+    <string name="ok">OK</string>
+    <string name="next">Next</string>
+
+    <!-- Ownership Form -->
+    <string name="owner">Name of Owner</string>
+    <string name="mobile">Mobile Number</string>
+    <string name="res_address">Residential Address</string>
+    <string name="landline">Landline Number</string>
+    <string name="photo_upload">Photo Upload</string>
+    <string name="aadhaar_num">Aadhaar Number</string>
+
+    <!-- Online POS -->
+    <string name="website_url">Website URL</string>
+    <string name="payment_url">Payment URL</string>
+
+    <string-array name="card">
+        <item>Select Card</item>
+        <item>Visa</item>
+        <item>MasterCard</item>
+        <item>Maestro</item>
+    </string-array>
+    <string name="card">Card</string>
+    <string name="visa">Visa</string>
+    <string name="mastercard">MasterCard</string>
+    <string name="maestro">Maestro</string>
+    
+    <string-array name="interf_lang">
+        <item>Select Interface Language</item>
+        <item>PHP</item>
+        <item>ASP</item>
+        <item>ASPX</item>
+        <item>Java</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="freq">
+        <item>Select Frequency</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+    </string-array>
+    <string-array name="format">
+        <item>Select Format</item>
+        <item>Standard</item>
+        <item>CSV</item>
+        <item>FIRC</item>
+    </string-array>
+    <string name="vas">Value Added Services</string>
+    <string name="dcc">DCC</string>
+    <string name="contactless">Contactless</string>
+    <string name="emi">EMI</string>
+    <string name="moto">MOTO</string>
+    <string name="standing_instructions">Standing Instructions</string>
+    <string name="cashpos">Cash@PoS</string>
+    <string name="others">Others</string>
+    <string-array name="vas">
+        <item>Select Value Added Services</item>
+        <item>DCC</item>
+        <item>Contactless</item>
+        <item>EMI</item>
+        <item>MOTO</item>
+        <item>Standing Instructions</item>
+        <item>Cash@PoS</item>
+        <item>Others</item>
+    </string-array>
+
+    <string name="have_website">Have Website?</string>
+    <string name="enter_beta">Beta Url</string>
+    <string name="or">OR</string>
+    <string name="upload">Upload Business Plan</string>
+
+    <!-- Offline POS -->
+    <string-array name="pos_type">
+        <item>Select type of PoS</item>
+        <item>PSTN</item>
+        <item>PC PoS</item>
+        <item>GPRS</item>
+        <item>MPoS</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="type_of_statement">
+        <item>Select Type of Statement</item>
+        <item>E-Statement</item>
+        <item>Physical</item>
+        <item>Not Applicable</item>
+    </string-array>
+
+    <!-- Settlement Form -->
+    <string name="current_acc">Current Account Number</string>
+    <string name="have_acc">Have Current Account?</string>
+    <string name="settlement_data">Settlement Data</string>
+    <string name="agree">I Agree</string>
+    <string name="disagree">I DisAgree</string>
+    <string name="verify">Verify</string>
+    <string name="ver_amount">Amount has been credited to your account. Please enter the same amount (Ex 1.104)</string>
+    <string name="amount">Amount</string>
+    <string name="done">Done</string>
+
+    <!-- Declaration Form -->
+    <string name="terms">Terms &amp; Conditions</string>
+    <string name="declaration">Liability of merchant for all chargebacks including fraud and all chargebacks including fraud and other transactions is 100%\nI / We hereby confirm that I / We have been enrolled under the special scheme offered by Axis Bank as per which we commit to maintain `____________________ monthly / quarterly average balance for the above discounted MDR.\nI / We further confirm that if the aforementioned monthly / quarterly average balance is not maintained, within the charge cycle period (15th of the current month to 14th of the next month), the Bank shall have full right to levy non-maintenance of balance charges and penal tariff in my / our account without any further notice.\nPAYMENT TIME FRAME The Bank will pay the Merchant in 3 days following the day on which the transactions are settled on the EDC less the discount for all the card transactions processed and accepted by the Bank.\nI / We accept and agree to the above charges and payment time frame.\nI / We certify that the information and particulars provided above are true and correct and that the person/s signing this Application has / have full legal authority to do so, on behalf of my / our Merchant Establishment. I / We have read and understood the terms &amp; conditions in the separately signed Merchant Agreement and agree to abide by the same. This Application is an offer by Axis Bank to me / us as a prospective merchant and does not amount to acceptance or enlisting of my / our Merchant Establishment for the said facility, till the Bank is satisfied with the Application. This Application is accepted pending scrutiny &amp; verification by the Bank or their appointed agent(s), and the Bank reserves the right to decline or cancel any application without assigning any reason whatsoever, and the Bank’s decision will be final and binding on me / us. I / We, by way of submission of this Application and the information requested therein, have evinced interest in enlisting for Merchant Acquiring Services, the scope of which will be governed by the Merchant Establishment Agreement that has been separately signed. The Bank reserves the rights to directly / indirectly verify all the information stated in this Application and to seek credit references.\nIf at any stage it is brought to the notice of the Bank that any information submitted herein is suppressed / incorrect / false, or that it has been given with a view to willfully mislead the Bank, the Application is liable to be rejected and the Merchant Establishment Agreement shall also be terminated forthwith, without revoking the Bank’s rights to proceed legally against the Merchant Establishment and / or the business owners.\nI / We agree that I / We will not require any Cardholder to pay any surcharge, to pay any part of the discount, whether through any increase in price or otherwise, or to pay any similar finance charge in connection with the transaction made by any card for purchase made at my / our Merchant Establishment using Axis Bank terminal. If at any stage it is brought to the notice of the Bank that such a charge is being applied by me / us, the relationship can be immediately terminated by the Bank.\nI / We agree that I / We will not cause the magnetic stripe of a payment card to be read twice or more for the same transaction, if the said card has been dipped / swiped at the EDC / any other Cardholder Interaction Interface and has received an authorization for the transaction, be the second swipe made for closing the transaction at the my / our Electronic Cash Register (ECR) or recording / matching / dispensing the inventory against the transaction at Point-of-Sale (PoS) or other equipment, or for the my / our loyalty program or for any other purposes, except under the Bank\'s prior authority to do so given to the me / us in writing.\nI / We agree to settle the batch for Visa Electron cards in 5 calendar days (including both transaction date and settlement date) and for all other debit, credit and prepaid cards (VISA / MasterCard / NPCI / card association acquired by Bank) in 7 calendar days (including both transaction date and settlement date). The Bank shall be entitled at any time to hold back payment for transactions settled beyond these time frames for a period of 180 days. I / We agree to not pass the discount range charged on cards to cardholder.In event of any change of address. I / We undertake to intimate the bank within 20 days, failing which the bank shall not be held responsible for any material or incidental liability caused o the Merchant as a result of the same.\nI / We further agree to accept information about new products, services and features introduced or offered by the bank from time to time via phone / email / SMS / direct communication from a bank official.</string>
+    <string name="sch_of_charges">Schedule Of charges</string>
+    <string name="t1">Fee / Charge</string>
+    <string name="t2">Charges^</string>
+    <string name="t3">Non transacting charges (for the month)</string>
+    <string name="t4">\u20B9 275 per terminal</string>
+    <string name="t5">Low transacting charges (for the month with volumes below \u20B9 25,000/-)</string>
+    <string name="t6">\u20B9 195 per terminal</string>
+    <string name="t7">Late settlement charges (for delay over 5 days)</string>
+    <string name="t8">0.95% of the batch value or \u20B9 750 whichever higher</string>
+    <string name="t9">Lost terminal charges (per terminal)</string>
+    <string name="t10">\u20B9 9,500/- for PSTN terminal</string>
+    <string name="t11">\u20B9 15,000/- for GPRS terminal</string>
+    <string name="t12">Paper statement charges per month</string>
+    <string name="t13">Daily statements: \u20B9 200/-</string>
+    <string name="t14">Weekly statements: \u20B9 50</string>
+    <string name="t15">Monthly statements: \u20B9 25</string>
+    <string name="t16">Back dated / Duplicate statement (including international transactions statement)</string>
+    <string name="t17">\u20B9 500/- per MID per month</string>
+    <string name="t18">Annual Maintenance Charge*</string>
+    <string name="t19">\u20B9 750/- per terminal</string>
+
+    <!-- STATUS -->
+    <string name="ref_num">Reference Number</string>
+    <string name="status">Get Status</string>
+    <string name="complete_the_form">Complete the Form</string>
+
+    <!-- Agg -->
+    <string name="upload_excel">Upload the Excel Sheet</string>
+
+    <!-- Verification -->
+    <string name="pan_ver">• Shop/Business PAN number verification</string>
+    <string name="aadhaar_ver">• Aadhaar number verification</string>
+    <string name="website_ver">• Website verifications</string>
+    <string name="key_ver">• Keywords verification</string>
+    <string name="risk_ver">• High and low risk business check</string>
+    <string name="domain_ver">• Domain name verification and integrity check</string>
+    <string name="acc_ver">• Current account balance transfer verification</string>
+    <string name="social_ver">• Social verification</string>
+
+</resources>
