@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>FingPay
+</title>
+<link rel="shortcut icon" href="imgs/icon.png"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link href="twitter-bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="js/font-awesome/css/font-awesome.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script src="twitter-bootstrap/js/bootstrap.js"></script>
+<script src="js/jquery.blockui.js"></script>
+<script src="js/jquery.md5.js"></script>
+<style>
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.form-signin {
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+	/* background-color: white; */
+}
+
+.form-signin .form-control {
+	position: relative;
+	height: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	 padding: 10px; 
+	font-size: 16px;
+}
+
+input{
+   text-align:center;
+}
+
+ .bigicon {
+        font-size: 97px;
+        color: #f96145;
+       
+    }
+
+ #over img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+}
+
+/*  body {
+    background-image: url("imgs/grey.png");
+    background-repeat: repeat-y repeat-x;
+} */
+ 
+ 
+ .form-signin .checkbox
+{
+    font-weight: normal;
+}
+ 
+ header {
+    width: auto;
+   /*  background: url(imgs/header_bg.jpg) repeat-x top center; */
+    height: 130px;
+}
+ 
+ figure {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 40px;
+    -webkit-margin-end: 40px;
+}
+ 
+  .logo {
+    width: auto;
+    float: left;
+    margin:0;
+}
+ 
+.blackBox {
+    width: 100%;
+    float: left;
+   /*  background: #202020; */
+    padding-top: 19px;
+    /* padding-bottom:5px; */
+}
+ .blackBox .main {
+    width: 1003px;
+    margin: 0 auto;
+}
+
+.blackBox p {
+    font: normal 12px Arial, Helvetica, sans-serif;
+    color: #a3a3a3;
+    text-decoration: none;
+    line-height: 18px;
+    padding-bottom: 7px;
+}
+
+.blackBox li {
+    line-height: normal;
+    float: left;
+    margin-right: 15px;
+    list-style: none;
+}
+
+/* .facebook a {
+    background: url(imgs/facebook.png) no-repeat left top;
+    display: block;
+    height: 30px;
+    width:43px;
+    color:blue;
+}
+.twitter a {
+    background: url(imgs/twitter.png) no-repeat left top;
+    display: block;
+    height: 35px;
+}
+.google a {
+    background: url(imgs/google.png) no-repeat left top;
+    display: block;
+    height: 35px;
+}
+span {
+    display: block;
+    text-align: center;
+    visibility: hidden;
+} */
+
+blackBox ul {
+    list-style: none;
+}
+
+</style>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+	<!-- <img src="imgs/loginbg.jpg" class="bgnew" style="width:100%"/> -->
+	<header style="background-color:#99ccff;">
+	
+	<div class=" col-md-4">
+	<figure><h3><a href="http://www.revasolutions.com"><img src="imgs/fingPayLogo.png" class="img-responsive" alt="logo"></a></h3></figure></div>
+	
+	</header><br>
+ <div style="min-height: 20px"></div> 
+<div class="row">
+<div class="col-md-4">	</div>
+	<div class="container well well-sm col-md-4" style="max-width:370px;">
+		<form id="LoginForm" class="form-signin" role="form">
+			<h2 class="form-signin-heading" align="center">Please Sign in</h2>
+			<div id="over" class="form-group">
+			<img class="center bigicon" src="imgs/user.png"/>
+			</div> 
+			<!-- <span class="fa fa-user bigicon"></span> -->
+			
+			
+			<div  class="form-group">
+			<input type="text" name="txtuser" id="username" class="form-control" placeholder="Username" required autofocus autocomplete="off">
+			</div>
+			<div  class="form-group"> 
+			<input type="password" name="txtpasswd" id="password" class="form-control" placeholder="Password" required autofocus autocomplete="off">
+			</div>
+			<div  class="form-group"> 
+			<input type="submit" class="btn btn-primary btn-block custom" value="Sign in">
+			<!-- <input type="reset" class="btn btn-primary btn-block custom" value="Create NeW Account">  -->
+			</div> 
+		</form>
+
+	</div>
+	<div class="col-md-4"></div>
+	</div>
+	
+	<div class="row" style="background-color:#99ccff;">
+	<div class="blackBox" >
+      <div class="col-md-7 col-md-offset-1">
+      
+     <p style="margin-top:15px;color:white;">© 2016 Reva Solutions. All Rights Reserved</p> 
+        
+     </div>
+        <div class="col-md-4">
+        <ul>
+              <li><a title="Facebook" href="http://www.revasolutions.com" target="_blank" style="color:blue;"><i class="fa fa-3x fa-facebook-square"></i></a></li>
+              <li><a title="Twitter" href="http://www.revasolutions.com" target="_blank"><i class="fa fa-3x fa-twitter-square"></i></a></li>
+               <li><a title="Google" href="http://www.revasolutions.com" target="_blank" style="color:red;"><i class="fa fa-3x fa-google-plus-square"></i></a></li>
+        </ul>
+        </div>
+    </div>
+	</div>
+	
+</body>
+<script type="text/javascript">
+
+$('#LoginForm').on('submit', function (e) {
+		e.preventDefault();
+		
+		var password=$.md5($("#password").val());
+		console.log(password);
+		
+		var result=
+		{
+				userId:$("#username").val(),
+				password:password
+		}
+		var Final = JSON.stringify(result);
+		console.log(Final);
+		$.ajax({
+			url:"webUserAuthentication",
+			dataType : 'json',
+			type : 'post',
+			data:Final,
+			contentType: "application/json",
+			beforeSend:function(jqXHR,settings){
+	        	$.blockUI({
+	                message : "Please Wait...."
+	            });
+	    		},
+			success:function(response){
+				$.unblockUI();
+				console.log(response.data);
+				var data=response.data;
+				if(response.status){
+					 location.href="controlPanel.html";
+					sessionStorage.setItem("userId",data.userId);
+					sessionStorage.setItem("userName", data.username);
+					sessionStorage.setItem("userType", data.userType);
+				}
+				else
+					alert(response.message);
+			}
+		});
+});
+
+</script>
+</html>
