@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/deskbg" >
+
+    <include
+        android:id="@+id/layout_top_bar"
+        layout="@layout/top_bar" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/btn_next"
+        android:layout_below="@+id/layout_top_bar"
+        android:layout_margin="10dp" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            
+             <TextView
+                android:id="@+id/tv_ref_number"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minHeight="52dp"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/et_current_acc"
+                    android:layout_width="fill_parent"
+                    android:layout_height="48dp"
+                    android:layout_margin="5dp"
+                    android:layout_toLeftOf="@+id/btn_verify"
+                    android:background="@drawable/edit_text"
+                    android:gravity="center_vertical"
+                    android:hint="@string/current_acc"
+                    android:inputType="numberSigned"
+                    android:maxLength="15"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/btn_verify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/clicktobg"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/verify"
+                    android:textColor="@android:color/white" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_verf"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:text="@string/ver_amount"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/et_amount"
+                        android:layout_width="fill_parent"
+                        android:layout_height="48dp"
+                        android:layout_margin="5dp"
+                        android:layout_toLeftOf="@+id/btn_done"
+                        android:background="@drawable/edit_text"
+                        android:gravity="center_vertical"
+                        android:hint="@string/amount"
+                        android:inputType="numberDecimal"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btn_done"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/clicktobg"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="@string/done"
+                        android:textColor="@android:color/white" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_verified"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/right_icon"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:visibility="gone"
+                    android:layout_gravity="center"
+                    android:minHeight="50dp"
+                    android:drawablePadding="5dp"
+                    android:text="Verified"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:text="@string/have_acc"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+
+                <RadioGroup
+                    android:id="@+id/rg_acc"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:checkedButton="@+id/rb_yes"
+                    android:orientation="horizontal"
+                    android:padding="5dp" >
+
+                    <RadioButton
+                        android:id="@+id/rb_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yes"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_no"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/clicktobg"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textSize="20sp" 
+        android:text="@string/next"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>
