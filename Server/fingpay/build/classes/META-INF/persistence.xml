@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="fingpay" transaction-type="RESOURCE_LOCAL">
+		<class>com.reva.jpa.CityMaster</class>
+		<class>com.reva.jpa.DeviceApkVersion</class>
+		<class>com.reva.jpa.MerchantMaster</class>
+		<class>com.reva.jpa.MerchantUserMap</class>
+		<class>com.reva.jpa.PosDevice</class>
+		<class>com.reva.jpa.PosMerchantMap</class>
+		<class>com.reva.jpa.PosMerchantMapPK</class>
+		<class>com.reva.jpa.StateMaster</class>
+		<class>com.reva.jpa.TransactionDetail</class>
+		<class>com.reva.jpa.User</class>
+		<class>com.reva.jpa.UserTransactionAmountLimit</class>
+		<class>com.reva.jpa.DeviceApk</class>
+		<class>com.reva.jpa.PhoneNumberOtp</class>
+		<class>com.reva.jpa.PaymentGateWay</class>
+		<class>com.reva.jpa.PayuPayment</class>
+		<class>com.reva.axix.jpa.DeclaractionForm</class>
+		<class>com.reva.axix.jpa.MerchantRegisrationId</class>
+		<class>com.reva.axix.jpa.MerchantRegistrationFrom</class>
+		<class>com.reva.axix.jpa.OnlinePosForm</class>
+		<class>com.reva.axix.jpa.OwnershipDetail</class>
+		<class>com.reva.axix.jpa.PosOfflineForm</class>
+		<class>com.reva.axix.jpa.SettlementForm</class>
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/fingpay"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+			<property name="eclipselink.logging.level" value="OFF"/>
+			<property name="javax.persistence.jdbc.password" value="root"/>
+		</properties>
+	</persistence-unit>
+</persistence>

@@ -1,0 +1,44 @@
+<script src="js/sha256.js"></script>
+<script>
+
+function submitForm(){
+document.getElementsByName("products[0].unitPrice")[0].setAttribute("value",document.getElementById("amountValue").value);
+document.getElementsByName("totalAmount")[0].setAttribute("value",document.getElementById("amountValue").value);
+debugger;
+var totalData = "continueUrl="+encodeURIComponent(document.getElementsByName('continueUrl')[0].value)+
+                "&currencyCode="+encodeURIComponent(document.getElementsByName('currencyCode')[0].value)+
+                "&customerIp="+encodeURIComponent(document.getElementsByName('customerIp')[0].value)+
+                "&description="+encodeURIComponent(document.getElementsByName('description')[0].value)+
+                "&merchantPosId="+encodeURIComponent(document.getElementsByName('merchantPosId')[0].value)+
+                "&notifyUrl="+encodeURIComponent(document.getElementsByName('notifyUrl')[0].value)+
+                "&products[0].name="+encodeURIComponent(document.getElementsByName('products[0].name')[0].value)+
+                "&products[0].quantity="+encodeURIComponent(document.getElementsByName('products[0].quantity')[0].value)+
+                "&products[0].unitPrice="+encodeURIComponent(document.getElementsByName('products[0].unitPrice')[0].value)+
+                "&totalAmount="+encodeURIComponent(document.getElementsByName('totalAmount')[0].value)+
+                "&13a980d4f851f3d9a1cfc792fb1f5e50";
+console.log(totalData);
+//var sig = encodeURIComponent(totalData);
+console.log(totalData);
+var finalsig = Sha256.hash(totalData);
+var payuSignatureValue="sender=145227;algorithm=SHA-256;signature="+finalsig;
+console.log(payuSignatureValue);
+document.getElementsByName("OpenPayu-Signature")[0].setAttribute("value",payuSignatureValue);
+document.getElementById("paymentForm").submit();
+};
+
+</script>
+<div style="min-height:100px;"></div>
+<center><form method="post" action="https://secure.payu.com/api/v2_1/orders" id="paymentForm">
+    <input type="hidden" name="continueUrl" value="http://23.92.60.217:8080/fingpay/payuResponse">
+    <input type="hidden" name="currencyCode" value="PLN" >
+    <input type="hidden" name="customerIp" value="123.123.123.123" >
+    <input type="hidden" name="description" value="Orderdescription" >
+    <input type="hidden" name="merchantPosId" value="145227" >
+    <input type="hidden" name="notifyUrl" value="http://23.92.60.217:8080/fingpay/payuResponse" >
+    <input type="hidden" name="products[0].name" value="Product1" >
+    <input type="hidden" name="products[0].quantity" value="1" >
+    <input type="text" name="products[0].unitPrice" id="amountValue" placeholder="Amount" value=""><br/>
+    <input type="hidden" name="totalAmount" value="">
+    <input type="hidden" name="OpenPayu-Signature" value=""><br/>
+    <button type="button" onclick="submitForm()" formtarget="_blank" >Pay with PayU</button>
+</form ></center>

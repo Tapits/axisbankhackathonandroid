@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>FingPay</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+
+<link href="twitter-bootstrap/css/bootstrap.css" type="text/css" rel='stylesheet' />
+<link rel="stylesheet" href="twitter-bootstrap/css/bootstrap-theme.css">
+<link href="js/font-awesome/css/font-awesome.css" type="text/css" rel="stylesheet" />
+<link href="css/jquery.dataTables.css" type="text/css" rel="stylesheet" />
+<link href="js/select2/select2.css" rel="stylesheet" /> 
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="twitter-bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="js/jquery.blockui.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.js"></script>
+<script src="js/select2/select2.js"></script>
+ <script src="js/jquery.livequery.min.js"></script>
+<style>
+.navbar-collapse.collapse {
+    height: 55px;
+    margin-top: 4px;
+    margin-bottom:0px;
+}
+
+.popover {
+  width: 200px;
+}
+
+.navbar-collapse.in {
+	overflow-y: visible;
+}
+
+.control-label{
+
+colour:red;
+}
+
+label.error {
+    color: red;
+}
+
+input[type="text"].datetime {
+    background-image: url('imgs/date.png');
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: right center;
+}
+
+
+html,body{
+width:100%;
+overflow-x:hidden;
+}
+
+
+label.error {
+    color: red;
+}
+
+.select2-container .select2-choice {
+
+    height: 29px;
+
+}
+
+.select2-container .select2-choice span {
+
+margin-top:5px;
+
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+#blinkText {   
+  animation-duration: 600ms;
+  animation-name: blink;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.nav-tabs li a{
+
+color:black;
+
+}
+
+.nav-tabs {
+    border-bottom: 1px solid blue;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid blue;
+    border-bottom-color: transparent;
+}
+ 
+</style>
+<script type="text/javascript">
+var imgBase64="";
+var uName=sessionStorage.getItem("userName");
+console.log(uName);
+$(function(){
+	
+	 $("select#selectState").livequery(function(){
+		 $(this).select2();
+	});	
+	 
+	 $("select#selectCity").livequery(function(){
+		 $(this).select2();
+	});	
+	
+	$("#popoverId").attr("title",uName);
+	 $(".popover-examples a").popover({
+	    	html:'true',
+	        placement : 'bottom',
+	        trigger: 'click'
+	       
+	    });
+	 
+	    $('body').on('click', function (e) {
+	    	console.log("in body click");
+	        $('[data-toggle="popover"]').each(function () {
+	            //the 'is' for buttons that trigger popups
+	            //the 'has' for icons within a button that triggers a popup
+	            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+	                $(this).popover('hide');
+	            }
+	        });
+	    });
+	    
+	    getData("getStateData");
+	    getData("getCityData");
+	    getData("getMerchantList");
+	    
+		var handleFileSelect = function(evt) {
+			var mimeType;
+		    var files = evt.target.files;
+		    var file = files[0];
+
+		    if (files && file) {
+		        var reader = new FileReader();
+		        console.log("uploaded file size is: "+file.size/1000+"KB");
+		     /*    reader.addEventListener("load",function(event){
+                    
+                    var picFile = event.target;
+                    console.log(picFile.result);
+		        }); */
+		        reader.onloadend = function(e) {
+		        	console.log(e);
+		        	console.log(e.target.result);
+		        	  var arr = (new Uint8Array(e.target.result)).subarray(0, 4);
+		        	  var header = "";
+		        	  for(var i = 0; i < arr.length; i++) {
+		        	     header += arr[i].toString(16);
+		        	  }
+		        	  console.log(header);
+		        	  console.log(file.type);
+		        	  imgBase64= btoa(String.fromCharCode.apply(null, new Uint8Array(e.target.result)));
+		        	  console.log(imgBase64);
+		        	  
+		                switch (header) {
+		                 case "89504e47":
+		                	 mimeType = "image/png";
+		                 break;
+		                case "47494638":
+		                	mimeType = "image/gif";
+		                break;
+		                case "ffd8ffe0":
+		                case "ffd8ffe1":
+		                case "ffd8ffe2":
+		                	mimeType = "image/jpeg";
+		                break;
+		                case "eca5c100":
+		                case "dba52d00":
+		                case "d0cf11e0a1b11ae1":
+		                case "cf11e0a1b11ae100":
+		                case "504b030414000600":
+		                case "504b34":
+		                	mimeType ="application/msword";
+		                break;
+		                case "25504446":
+		                	mimeType ="application/pdf";
+		                break;	
+		                default:
+		                	mimeType = "unknown"; // Or you can use the blob.type as fallback
+		                break;
+		            }
+		        	  console.log(mimeType);
+		                 	if(imgBase64!=null){
+		                 		var len=$("#selectMerchantLogo").val().split("\\").length-1;
+		                 		
+		                 			if(mimeType.indexOf("image")==-1){
+		                 			
+		                 				jAlert("The file format differs from the attachment type","CVMS");
+		                 				imgBase64=null;
+		                 				$("#selectMerchantLogo").val("");
+		                 			
+		                 			}
+		                 			else{
+		                 			    var div = document.createElement("div");
+		                 			   var output = document.getElementById("merchantLogo");
+		        	                    div.className="col-lg-4 col-xs-12";
+		        	                    div.innerHTML = "<img class='thumbnail img-responsive' id='logoSelected' style='height:200px;width:100%'/>";
+		        	                    
+		        	                    output.insertBefore(div,null); 
+		        	                    document.getElementById('logoSelected').setAttribute( 'src',"data:"+file.type+";base64"+","+imgBase64);
+		        	                   
+		                 				}
+		                 			
+		                 		
+		                 	}else{
+		                 		alert("Please attach file");
+		                 	}
+		                 
+		        	};
+		        	reader.readAsArrayBuffer(file);
+		    }
+		};
+		
+		if (window.File && window.FileReader && window.FileList && window.Blob) {
+		    document.getElementById('selectMerchantLogo').addEventListener('change', handleFileSelect, false);
+		} else {
+		    alert('The File APIs are not fully supported in this browser.');
+		}
+	    
+	    
+});
+
+function getData(url,dataToBeSent){
+	
+	if(dataToBeSent=="" || dataToBeSent==undefined || dataToBeSent==null){
+		dataToBeSent="";
+	}
+	$.ajax({
+		url : url,
+		dataType : 'json',
+		type : 'get',
+		data:dataToBeSent,
+		beforeSend:function(jqXHR,settings){
+			 
+	   	},
+		success : function(response) {
+			
+			if (response.status) {
+			if(url=="getStateData")
+			{
+				$('#selectState').find('option').remove().end();
+				   $('#selectState').append('<option value="" disabled selected>Select State</option>');
+				 for(var i=0, len=response.data.length; i<len; i++){
+			         var temp = response.data[i];
+			         $("#selectState").append('<option value=\"' + temp.stateId+ '\">' + temp.state+ '</option>');
+			     };
+			     
+			}
+			else if(url=="getCityData")
+			{
+				$('#selectCity').find('option').remove().end();
+				   $('#selectCity').append('<option value="" disabled selected>Select City</option>');
+				 for(var i=0, len=response.data.length; i<len; i++){
+			         var temp = response.data[i];
+			         $("#selectCity").append('<option value=\"' + temp.cityId+ '\">' + temp.city+ '</option>');
+			     };
+			     
+			}
+			else if(url=="getMerchantList"){
+				var insert="";
+				
+				$.each(response.data,function(key,val){
+					var time=new Date(val.timestamp);
+					time=time.toUTCString();
+					insert+='<tr><th>'+val.merchantName+'</th><th>'+val.merchantId+'</th><th>'+val.merchantPhoneNumber+'</th><th>'+val.merchantAddress1+'</th><th>'+val.merchantAddress2+'</th><th>'+val.merchantAddress3+'</th><th>'+val.cityMaster.city+'</th><th>'+val.stateMaster.state+'</th><th>'+time+'</th></tr>';
+				});
+				$("#registeredMerchantsTableTbody").html(insert);
+				$("#registeredMerchantsTable").dataTable();
+				
+				
+			}
+			
+
+			}
+			
+			else{
+				alert(response.message);
+				}
+			}
+		});
+	
+}
+
+
+function sendData(url,dataToBeSent){
+	$.ajax({
+		url : url,
+		dataType : 'json',
+		type : 'post',
+		data:dataToBeSent,
+		beforeSend:function(jqXHR,settings){
+			$.blockUI({
+                message : "Please Wait...."
+            });
+	   	},
+		success : function(response) {
+			$.unblockUI();
+			if (response.status) {
+			alert(response.message);
+			 $('#createMerchantForm')[0].reset();
+			 $('#selectCity').select2().select2('val', $('.select2 option:eq(1)').val());
+			 $('#selectState').select2().select2('val', $('.select2 option:eq(1)').val());
+			 imgBase64="";
+			 $("#merchantLogo").html("");
+			}
+			
+			else{
+				alert(response.message);
+				}
+			}
+		});
+};
+
+$(document).ready(function(){
+	 $('#createMerchantForm').on('submit', function (e) {
+			e.preventDefault();
+			var data={"merchantAddress1":$("#merchantAddress1").val().trim(),"merchantAddress2":$("#merchantAddress2").val().trim(),"merchantAddress3":$("#merchantAddress3").val().trim(),
+					"merchantPhoneNumber":$("#phoneNumber").val().trim(),"merchantLogo":imgBase64,"merchantName":$("#merchantName").val().trim(),"merchantPin":$("#merchantPin").val().trim(),"merchantId":$("#merchantId").val().trim(),"cityMaster":{"cityId":$("#selectCity option:selected").val()},"stateMaster":{"stateId":$("#selectState option:selected").val()}};
+			var dataToBeSent=JSON.stringify(data);
+			console.log(dataToBeSent);
+			sendData("merchantRegistration",dataToBeSent);
+	 });
+});
+</script>
+
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" style="min-height:68px;">
+		<div class="container" style="margin-left:10px;margin-right:225px;width:90%;">	
+		<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+			<a class="navbar-brand" style="margin-left: -20px;">
+			<img src="imgs/fingPayLogo.png" class="img-responsive"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav" style="margin-top:3px;">
+					<li class='active'><a style="cursor:pointer;" href="controlPanel.html">Home</a></li>
+				</ul>
+			<div class="collapse navbar-collapse navHeaderCollapse">
+			
+<ul class="nav navbar-nav navbar-right">
+
+  
+
+<li class="popover-examples">
+
+<a href="#" class="btn popover-dismiss" data-toggle="popover" id="popoverId"
+ data-content='<ul><li><a id="btnLogout" href="index.html"> <i class="icon-off icon-white"></i> Log Out </a></li></ul>'><span class="glyphicon glyphicon-user"></span></a>
+</li>  
+
+      </ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div style="min-height:100px;"></div>
+ <section id="userCreationAndMerchantDetails">
+<div class="row" style="margin-right:2%;margin-left:2%;">
+<ul class="nav nav-tabs">
+   <li class="active" id="createProjectId"><a href="#createMerchant" data-toggle="tab">Merchant Registration</a> </li>
+   <li id="createListingUnitId"><a href="#merchantDetails" data-toggle="tab">Merchant Details</a></li>
+</ul>
+
+<div class="tab-content">
+   <div class="tab-pane fade in active" id="createMerchant">
+           <div class="panel panel-primary" id="launchCreateProjectMasterPanel">
+             <!--   <div class="panel-heading clearfix" style="padding:1px 1px;">
+                          <label style="text-align: center;color:white;" id="heading"> <h4 style="color:white;">Create Project</h4></label>
+                        </div> -->
+                        <form id="createMerchantForm" style="width:100%;" class="form-horizontal">
+                        <div class="panel-body well well-sm">
+                        <br>
+                       
+                        <div class="form-group">
+                         <label class="col-md-3 control-label">Name: </label>
+                         <div class="col-md-6"><input class="form-control" style="width:100%" id="merchantName" name="merchantName" placeholder="Name" required></div>
+                         </div>
+                         <div  class="form-group">
+                         <label for="text" class="col-md-3 control-label"> Address1: </label>                                       
+                         <div class="col-md-6"><textarea class="form-control" style="width:100%" id="merchantAddress1" name="merchantAddress1" placeholder="Address1" required></textarea></div>
+                         </div>
+                           <div  class="form-group">
+                         <label for="text" class="col-md-3 control-label"> Address2: </label>                                       
+                         <div class="col-md-6"><textarea class="form-control" style="width:100%" id="merchantAddress2" name="merchantAddress2" placeholder="Address2" required></textarea></div>
+                         </div>
+                           <div  class="form-group">
+                         <label for="text" class="col-md-3 control-label"> Address3: </label>                                       
+                         <div class="col-md-6"><textarea class="form-control" style="width:100%" id="merchantAddress3" name="merchantAddress3" placeholder="Address3" required></textarea></div>
+                         </div>
+                          <div  class="form-group">
+                         <label for="text" class="col-md-3 control-label"> Phone number: </label>                                       
+                         <div class="col-md-6"><input class="form-control" style="width:100%" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required></div>
+                         </div>
+                         <div class="form-group">
+                          <label class="col-md-3 control-label">Select City: </label>
+                          <div class="col-md-6">
+                         <select style="width:100%" id="selectCity" name="selectCity" required><option value="" disabled selected> <center>Select City</center></option>
+                         </select>
+                          </div>
+                          </div>
+                          <div class="form-group">
+                          <label class="col-md-3 control-label">Select State: </label>
+                          <div class="col-md-6">
+                          <select style="width:100%" id="selectState" name="selectState" required><option value="" disabled selected> <center>Select State</center></option>
+                          </select>
+                           </div>
+                          </div>
+                         <div class="form-group">
+                         <label class="col-md-3 control-label">Pin: </label>
+                         <div class="col-md-6"><input class="form-control" style="width:100%" id="merchantPin" name="merchantPin" placeholder="PIN" required></div>
+                         </div>
+                         <div class="form-group">
+                         <label class="col-md-3 control-label">Login Id: </label>
+                         <div class="col-md-6"><input class="form-control" style="width:100%" id="merchantId" name="merchantId" placeholder="Login Id" required></div>
+                         </div>
+                         <div  class="form-group">
+                         <label for="text" class="col-md-3 control-label">Merchant Logo : </label>                                       
+                         <div class="col-md-6"><input id="selectMerchantLogo" type="file" class="filestyle" data-buttonName="btn-primary" name="selectMerchantLogo" required></div>
+                         </div> 
+                         <div align="center"> <output id="merchantLogo"></output></div>
+                         
+                        
+     
+                        </div>
+                        <div class="modal-footer well well-sm">
+                        <button class="btn btn-primary" id="createMerchantFrmSbt">Create</button>
+                        </div></form>
+                        </div>
+   </div>
+
+   <div class="tab-pane fade" id="merchantDetails">
+   <div class="panel panel-primary" id="createListingUnitPanel">
+<!-- <div class="panel-heading clearfix" style="padding:1px 1px;">
+                          <label style="text-align: center;color:white;" id="heading"> <h4 style="color:white;">Create Listing Unit</h4></label>
+                        </div> -->
+                        <div class="panel-body">
+                    <div class="well well-sm">  
+             
+  
+  <br>
+            <div class="table-responsive">
+         <table class="table table-striped table-bordered" id="registeredMerchantsTable">
+          <thead><tr><th>Name</th><th>Merchant Id</th><th>Phone Number</th><th>Address1</th><th>Address2</th><th>Address3</th><th>City</th><th>State</th><th>Time</th></tr></thead>
+          <tbody id="registeredMerchantsTableTbody"></tbody>
+          </table>
+           </div>
+                         </div> 
+                        </div>
+               <!--          <div class="panel-footer clearfix ">
+                         <div class="pull-right">
+                         <button class="btn btn-primary" value="" > CREATE </button>
+                         </div>   
+</div> -->
+</div>
+   </div>
+</div>
+</div>
+</section>
+</body>
+</html>
